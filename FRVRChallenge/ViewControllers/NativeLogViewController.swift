@@ -1,4 +1,5 @@
 import UIKit
+import FRVRSDK
 
 private struct NativeLogPayload: Decodable {
     let text: String
@@ -6,19 +7,21 @@ private struct NativeLogPayload: Decodable {
 
 final class NativeLogViewController: WebViewController {
 
-    private let nativeLog = ScriptMessageHandler<NativeLogPayload>(name: "NativeLog")
+    private let nativeLogHandler: ScriptMessageHandler<NativeLogPayload>
 
     init() {
 
-        super.init(page: "NativeLog")
+        nativeLogHandler = ScriptMessageHandler(name: "NativeLog")
+
+        super.init(pageName: "NativeLog")
 
         tabBarItem = UITabBarItem(title: "Native Logs", image: UIImage(systemName: "doc.plaintext"), tag: 0)
 
-        nativeLog.onSuccess = { payload in
+        nativeLogHandler.onSuccess = { payload in
             Logger.log(tag: "NativeLog", payload.text)
         }
 
-        webView.configuration.userContentController.add(nativeLog)
+        webView.configuration.userContentController.add(nativeLogHandler)
     }
 
     required init?(coder: NSCoder) {

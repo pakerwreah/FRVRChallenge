@@ -1,33 +1,31 @@
 import WebKit
 
-enum ScriptMessageHandlerError: Error {
+public enum ScriptMessageHandlerError: Error {
     case invalidJSON(String)
     case decodeError(String)
 }
 
-class ScriptMessageHandler<ScriptMessageModel: Decodable>: NSObject, WKScriptMessageHandler {
+public class ScriptMessageHandler<ScriptMessageModel: Decodable>: NSObject, WKScriptMessageHandler {
 
-    typealias Handler = (Result<ScriptMessageModel, ScriptMessageHandlerError>) -> Void
+    public let name: String
 
-    let name: String
-
-    lazy var onSuccess: (ScriptMessageModel) -> Void = { [weak self] _ in
+    public lazy var onSuccess: (ScriptMessageModel) -> Void = { [weak self] _ in
         guard let self = self else { return }
         assertionFailure("No success handler configured for \(self.name)")
     }
 
-    lazy var onError: (ScriptMessageHandlerError) -> Void = { [weak self] error in
+    public lazy var onError: (ScriptMessageHandlerError) -> Void = { [weak self] error in
         assertionFailure(error.localizedDescription)
     }
 
-    init(name: String) {
+    public init(name: String) {
 
         self.name = name
 
         super.init()
     }
 
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+    public func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
 
         guard message.name == name else { return }
 
@@ -45,7 +43,7 @@ class ScriptMessageHandler<ScriptMessageModel: Decodable>: NSObject, WKScriptMes
     }
 }
 
-extension WKUserContentController {
+public extension WKUserContentController {
 
     func add<T>(_ scriptMessageHandler: ScriptMessageHandler<T>) {
         add(scriptMessageHandler, name: scriptMessageHandler.name)

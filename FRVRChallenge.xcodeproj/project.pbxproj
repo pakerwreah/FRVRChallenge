@@ -8,43 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		34E7623D28C22C8B00BA3380 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7623C28C22C8B00BA3380 /* AppDelegate.swift */; };
-		34E7624128C22C8B00BA3380 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7624028C22C8B00BA3380 /* WebViewController.swift */; };
 		34E7624628C22C8E00BA3380 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34E7624528C22C8E00BA3380 /* Assets.xcassets */; };
 		34E7624928C22C8E00BA3380 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34E7624728C22C8E00BA3380 /* LaunchScreen.storyboard */; };
-		34E7625428C22C8E00BA3380 /* FRVRChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7625328C22C8E00BA3380 /* FRVRChallengeTests.swift */; };
-		34E7627528C2432D00BA3380 /* ScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7627428C2432D00BA3380 /* ScriptMessageHandler.swift */; };
 		34E7627A28C253E300BA3380 /* WebPages in Resources */ = {isa = PBXBuildFile; fileRef = 34E7627928C253E300BA3380 /* WebPages */; };
 		34E7627C28C2674800BA3380 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7627B28C2674800BA3380 /* TabBarController.swift */; };
 		34E7627E28C26A4900BA3380 /* NativeLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7627D28C26A4900BA3380 /* NativeLogViewController.swift */; };
-		34E7628028C2713200BA3380 /* FRVR.js in Resources */ = {isa = PBXBuildFile; fileRef = 34E7627F28C2713200BA3380 /* FRVR.js */; };
-		34E7628228C27AE100BA3380 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7628128C27AE100BA3380 /* Logger.swift */; };
+		34E7628628C281A800BA3380 /* FRVRSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 34E7628528C281A800BA3380 /* FRVRSDK */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		34E7625028C22C8E00BA3380 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 34E7623128C22C8B00BA3380 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 34E7623828C22C8B00BA3380;
-			remoteInfo = FRVRChallenge;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		34E7623928C22C8B00BA3380 /* FRVRChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FRVRChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E7623C28C22C8B00BA3380 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		34E7624028C22C8B00BA3380 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		34E7624528C22C8E00BA3380 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		34E7624828C22C8E00BA3380 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		34E7624A28C22C8E00BA3380 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		34E7624F28C22C8E00BA3380 /* FRVRChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FRVRChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		34E7625328C22C8E00BA3380 /* FRVRChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRVRChallengeTests.swift; sourceTree = "<group>"; };
-		34E7627428C2432D00BA3380 /* ScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMessageHandler.swift; sourceTree = "<group>"; };
 		34E7627928C253E300BA3380 /* WebPages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WebPages; sourceTree = "<group>"; };
 		34E7627B28C2674800BA3380 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		34E7627D28C26A4900BA3380 /* NativeLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeLogViewController.swift; sourceTree = "<group>"; };
-		34E7627F28C2713200BA3380 /* FRVR.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = FRVR.js; sourceTree = "<group>"; };
-		34E7628128C27AE100BA3380 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		34E7628328C2806400BA3380 /* FRVRSDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FRVRSDK; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,13 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		34E7624C28C22C8E00BA3380 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				34E7628628C281A800BA3380 /* FRVRSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,9 +43,10 @@
 		34E7623028C22C8B00BA3380 = {
 			isa = PBXGroup;
 			children = (
+				34E7628328C2806400BA3380 /* FRVRSDK */,
 				34E7623B28C22C8B00BA3380 /* FRVRChallenge */,
-				34E7625228C22C8E00BA3380 /* FRVRChallengeTests */,
 				34E7623A28C22C8B00BA3380 /* Products */,
+				34E7628428C281A800BA3380 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,7 +54,6 @@
 			isa = PBXGroup;
 			children = (
 				34E7623928C22C8B00BA3380 /* FRVRChallenge.app */,
-				34E7624F28C22C8E00BA3380 /* FRVRChallengeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -88,19 +63,10 @@
 			children = (
 				34E7626E28C22E9D00BA3380 /* Application */,
 				34E7626D28C22E7300BA3380 /* Resources */,
-				34E7627328C2430500BA3380 /* SDK */,
 				34E7626C28C22E4A00BA3380 /* ViewControllers */,
 				34E7627928C253E300BA3380 /* WebPages */,
 			);
 			path = FRVRChallenge;
-			sourceTree = "<group>";
-		};
-		34E7625228C22C8E00BA3380 /* FRVRChallengeTests */ = {
-			isa = PBXGroup;
-			children = (
-				34E7625328C22C8E00BA3380 /* FRVRChallengeTests.swift */,
-			);
-			path = FRVRChallengeTests;
 			sourceTree = "<group>";
 		};
 		34E7626C28C22E4A00BA3380 /* ViewControllers */ = {
@@ -116,7 +82,6 @@
 			isa = PBXGroup;
 			children = (
 				34E7624528C22C8E00BA3380 /* Assets.xcassets */,
-				34E7627F28C2713200BA3380 /* FRVR.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -131,14 +96,11 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		34E7627328C2430500BA3380 /* SDK */ = {
+		34E7628428C281A800BA3380 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				34E7628128C27AE100BA3380 /* Logger.swift */,
-				34E7627428C2432D00BA3380 /* ScriptMessageHandler.swift */,
-				34E7624028C22C8B00BA3380 /* WebViewController.swift */,
 			);
-			path = SDK;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,27 +119,12 @@
 			dependencies = (
 			);
 			name = FRVRChallenge;
+			packageProductDependencies = (
+				34E7628528C281A800BA3380 /* FRVRSDK */,
+			);
 			productName = FRVRChallenge;
 			productReference = 34E7623928C22C8B00BA3380 /* FRVRChallenge.app */;
 			productType = "com.apple.product-type.application";
-		};
-		34E7624E28C22C8E00BA3380 /* FRVRChallengeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 34E7626628C22C8E00BA3380 /* Build configuration list for PBXNativeTarget "FRVRChallengeTests" */;
-			buildPhases = (
-				34E7624B28C22C8E00BA3380 /* Sources */,
-				34E7624C28C22C8E00BA3380 /* Frameworks */,
-				34E7624D28C22C8E00BA3380 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				34E7625128C22C8E00BA3380 /* PBXTargetDependency */,
-			);
-			name = FRVRChallengeTests;
-			productName = FRVRChallengeTests;
-			productReference = 34E7624F28C22C8E00BA3380 /* FRVRChallengeTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -191,10 +138,6 @@
 				TargetAttributes = {
 					34E7623828C22C8B00BA3380 = {
 						CreatedOnToolsVersion = 13.4;
-					};
-					34E7624E28C22C8E00BA3380 = {
-						CreatedOnToolsVersion = 13.4;
-						TestTargetID = 34E7623828C22C8B00BA3380;
 					};
 				};
 			};
@@ -212,7 +155,6 @@
 			projectRoot = "";
 			targets = (
 				34E7623828C22C8B00BA3380 /* FRVRChallenge */,
-				34E7624E28C22C8E00BA3380 /* FRVRChallengeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -224,15 +166,7 @@
 			files = (
 				34E7627A28C253E300BA3380 /* WebPages in Resources */,
 				34E7624928C22C8E00BA3380 /* LaunchScreen.storyboard in Resources */,
-				34E7628028C2713200BA3380 /* FRVR.js in Resources */,
 				34E7624628C22C8E00BA3380 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		34E7624D28C22C8E00BA3380 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,31 +178,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				34E7627C28C2674800BA3380 /* TabBarController.swift in Sources */,
-				34E7628228C27AE100BA3380 /* Logger.swift in Sources */,
-				34E7627528C2432D00BA3380 /* ScriptMessageHandler.swift in Sources */,
-				34E7624128C22C8B00BA3380 /* WebViewController.swift in Sources */,
 				34E7623D28C22C8B00BA3380 /* AppDelegate.swift in Sources */,
 				34E7627E28C26A4900BA3380 /* NativeLogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		34E7624B28C22C8E00BA3380 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				34E7625428C22C8E00BA3380 /* FRVRChallengeTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		34E7625128C22C8E00BA3380 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 34E7623828C22C8B00BA3380 /* FRVRChallenge */;
-			targetProxy = 34E7625028C22C8E00BA3380 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		34E7624728C22C8E00BA3380 /* LaunchScreen.storyboard */ = {
@@ -403,6 +318,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 32973VC289;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FRVRChallenge/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -429,6 +345,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 32973VC289;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FRVRChallenge/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -445,44 +362,6 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		34E7626728C22C8E00BA3380 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = br.paker.FRVRChallengeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FRVRChallenge.app/FRVRChallenge";
-			};
-			name = Debug;
-		};
-		34E7626828C22C8E00BA3380 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = br.paker.FRVRChallengeTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FRVRChallenge.app/FRVRChallenge";
 			};
 			name = Release;
 		};
@@ -507,16 +386,14 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		34E7626628C22C8E00BA3380 /* Build configuration list for PBXNativeTarget "FRVRChallengeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				34E7626728C22C8E00BA3380 /* Debug */,
-				34E7626828C22C8E00BA3380 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		34E7628528C281A800BA3380 /* FRVRSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FRVRSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 34E7623128C22C8B00BA3380 /* Project object */;
 }

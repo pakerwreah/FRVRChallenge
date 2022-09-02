@@ -1,4 +1,5 @@
 import UIKit
+import FRVRSDK
 
 class TabBarController: UITabBarController {
 
@@ -11,8 +12,8 @@ class TabBarController: UITabBarController {
 
         viewControllers = [
             NativeLogViewController(),
-            WebViewController(page: "LocalNotification"),
-            WebViewController(page: "AppLifecycle")
+            WebViewController(pageName: "LocalNotification"),
+            WebViewController(pageName: "AppLifecycle")
         ]
     }
 }
