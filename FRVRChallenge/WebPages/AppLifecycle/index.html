@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <style>
+            html {
+                font-size: 48px;
+            }
+            .row {
+                padding: 10px;
+            }
+        </style>
+        <script>
+            class FRVR {
+
+                constructor() {
+                    window.addEventListener('load', (event) => {
+                        this.postMessage('PageLifecycle', { event: 'didLoad' })
+                    })
+                }
+
+                postMessage(handler, message) {
+                    window.webkit.messageHandlers[handler].postMessage(message)
+                }
+            }
+
+            function appendText(text) {
+                document.body.innerHTML += `<div class='row'>${text}</div>`
+            }
+
+            const frvr = new FRVR()
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

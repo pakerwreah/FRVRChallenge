@@ -1,10 +1,3 @@
-//
-//  FRVRChallengeTests.swift
-//  FRVRChallengeTests
-//
-//  Created by Paker on 02/09/22.
-//
-
 import XCTest
 @testable import FRVRChallenge
 
