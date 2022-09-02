@@ -14,6 +14,10 @@
 		34E7625428C22C8E00BA3380 /* FRVRChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7625328C22C8E00BA3380 /* FRVRChallengeTests.swift */; };
 		34E7627528C2432D00BA3380 /* ScriptMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7627428C2432D00BA3380 /* ScriptMessageHandler.swift */; };
 		34E7627A28C253E300BA3380 /* WebPages in Resources */ = {isa = PBXBuildFile; fileRef = 34E7627928C253E300BA3380 /* WebPages */; };
+		34E7627C28C2674800BA3380 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7627B28C2674800BA3380 /* TabBarController.swift */; };
+		34E7627E28C26A4900BA3380 /* NativeLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7627D28C26A4900BA3380 /* NativeLogViewController.swift */; };
+		34E7628028C2713200BA3380 /* FRVR.js in Resources */ = {isa = PBXBuildFile; fileRef = 34E7627F28C2713200BA3380 /* FRVR.js */; };
+		34E7628228C27AE100BA3380 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7628128C27AE100BA3380 /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +41,10 @@
 		34E7625328C22C8E00BA3380 /* FRVRChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRVRChallengeTests.swift; sourceTree = "<group>"; };
 		34E7627428C2432D00BA3380 /* ScriptMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMessageHandler.swift; sourceTree = "<group>"; };
 		34E7627928C253E300BA3380 /* WebPages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WebPages; sourceTree = "<group>"; };
+		34E7627B28C2674800BA3380 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		34E7627D28C26A4900BA3380 /* NativeLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeLogViewController.swift; sourceTree = "<group>"; };
+		34E7627F28C2713200BA3380 /* FRVR.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = FRVR.js; sourceTree = "<group>"; };
+		34E7628128C27AE100BA3380 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,7 +106,8 @@
 		34E7626C28C22E4A00BA3380 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				34E7624028C22C8B00BA3380 /* WebViewController.swift */,
+				34E7627D28C26A4900BA3380 /* NativeLogViewController.swift */,
+				34E7627B28C2674800BA3380 /* TabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -107,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				34E7624528C22C8E00BA3380 /* Assets.xcassets */,
+				34E7627F28C2713200BA3380 /* FRVR.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -124,7 +134,9 @@
 		34E7627328C2430500BA3380 /* SDK */ = {
 			isa = PBXGroup;
 			children = (
+				34E7628128C27AE100BA3380 /* Logger.swift */,
 				34E7627428C2432D00BA3380 /* ScriptMessageHandler.swift */,
+				34E7624028C22C8B00BA3380 /* WebViewController.swift */,
 			);
 			path = SDK;
 			sourceTree = "<group>";
@@ -212,6 +224,7 @@
 			files = (
 				34E7627A28C253E300BA3380 /* WebPages in Resources */,
 				34E7624928C22C8E00BA3380 /* LaunchScreen.storyboard in Resources */,
+				34E7628028C2713200BA3380 /* FRVR.js in Resources */,
 				34E7624628C22C8E00BA3380 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,9 +243,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34E7627C28C2674800BA3380 /* TabBarController.swift in Sources */,
+				34E7628228C27AE100BA3380 /* Logger.swift in Sources */,
 				34E7627528C2432D00BA3380 /* ScriptMessageHandler.swift in Sources */,
 				34E7624128C22C8B00BA3380 /* WebViewController.swift in Sources */,
 				34E7623D28C22C8B00BA3380 /* AppDelegate.swift in Sources */,
+				34E7627E28C26A4900BA3380 /* NativeLogViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

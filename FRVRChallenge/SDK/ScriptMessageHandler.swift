@@ -10,7 +10,15 @@ class ScriptMessageHandler<ScriptMessageModel: Decodable>: NSObject, WKScriptMes
     typealias Handler = (Result<ScriptMessageModel, ScriptMessageHandlerError>) -> Void
 
     let name: String
-    var handler: Handler?
+
+    lazy var onSuccess: (ScriptMessageModel) -> Void = { [weak self] _ in
+        guard let self = self else { return }
+        assertionFailure("No success handler configured for \(self.name)")
+    }
+
+    lazy var onError: (ScriptMessageHandlerError) -> Void = { [weak self] error in
+        assertionFailure(error.localizedDescription)
+    }
 
     init(name: String) {
 
@@ -23,21 +31,16 @@ class ScriptMessageHandler<ScriptMessageModel: Decodable>: NSObject, WKScriptMes
 
         guard message.name == name else { return }
 
-        guard let handler = handler else {
-            assertionFailure("No script message handler configured for \(name)")
-            return
-        }
-
         do {
             guard JSONSerialization.isValidJSONObject(message.body) else {
-                handler(.failure(.invalidJSON("\(message.body)")))
+                onError(.invalidJSON("\(message.body)"))
                 return
             }
             let data = try JSONSerialization.data(withJSONObject: message.body, options: [])
             let model = try JSONDecoder().decode(ScriptMessageModel.self, from: data)
-            handler(.success(model))
+            onSuccess(model)
         } catch {
-            handler(.failure(.decodeError(error.localizedDescription)))
+            onError(.decodeError(error.localizedDescription))
         }
     }
 }

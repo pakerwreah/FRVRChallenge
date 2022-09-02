@@ -13,8 +13,9 @@ private struct PageLifecyclePayload: Decodable {
 class WebViewController: UIViewController {
 
     private let page: String
-    private let lifecycle = ScriptMessageHandler<PageLifecyclePayload>(name: "PageLifecycle")
-    private let webView = WKWebView()
+    private let pageLifecycle = ScriptMessageHandler<PageLifecyclePayload>(name: "PageLifecycle")
+
+    let webView = WKWebView()
 
     init(page: String) {
 
@@ -22,14 +23,8 @@ class WebViewController: UIViewController {
 
         super.init(nibName: nil, bundle: nil)
 
-        lifecycle.handler = { [weak self] result in
-            switch result {
-            case .success(let payload):
-                self?.webPageDidReceiveEvent(event: payload.event)
-
-            case .failure(let error):
-                assertionFailure("Unable to decode message, error: \(error)")
-            }
+        pageLifecycle.onSuccess = { [weak self] payload in
+            self?.webPageDidReceiveEvent(event: payload.event)
         }
     }
 
@@ -45,9 +40,20 @@ class WebViewController: UIViewController {
 
         super.viewDidLoad()
 
-        webView.configuration.userContentController.add(lifecycle)
+        let userContentController = webView.configuration.userContentController
+
+        userContentController.add(pageLifecycle)
 
         let bundleURL = Bundle.main.resourceURL!.absoluteURL
+
+        let script = WKUserScript(
+            source: try! String(contentsOf: bundleURL.appendingPathComponent("FRVR.js")),
+            injectionTime: .atDocumentStart,
+            forMainFrameOnly: true
+        )
+
+        userContentController.addUserScript(script)
+
         let html = bundleURL.appendingPathComponent("WebPages/\(page)/index.html")
         let webPages = bundleURL.appendingPathComponent("WebPages", isDirectory: true)
         webView.loadFileURL(html, allowingReadAccessTo: webPages)
@@ -62,6 +68,6 @@ class WebViewController: UIViewController {
     }
 
     func webPageDidLoad() {
-        print("Success: didLoad")
+        Logger.log(tag: "PageLifecycle", "didLoad")
     }
 }
