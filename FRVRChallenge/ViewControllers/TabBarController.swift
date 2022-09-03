@@ -12,8 +12,10 @@ class TabBarController: UITabBarController {
 
         viewControllers = [
             NativeLogViewController(),
-            WebViewController(pageName: "LocalNotification"),
+            LocalNotificationViewController(),
             WebViewController(pageName: "AppLifecycle")
         ]
+
+        selectedIndex = 1
     }
 }

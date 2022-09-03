@@ -12,18 +12,21 @@ private struct PageLifecyclePayload: Decodable {
 
 open class WebViewController: UIViewController {
 
-    private let pageName: String
-    private let pageLifecycleHandler: ScriptMessageHandler<PageLifecyclePayload>
-
+    public let pageName: String
     public let webView: WKWebView
 
-    public init(pageName: String) {
+    private let pageLifecycleHandler: ScriptMessageHandler<PageLifecyclePayload>
+
+    public init(pageName: String, configuration: WKWebViewConfiguration? = nil) {
 
         self.pageName = pageName
+        self.webView = configuration.map { WKWebView(frame: .zero, configuration: $0) } ?? WKWebView()
+
         self.pageLifecycleHandler = ScriptMessageHandler(name: "PageLifecycle")
-        self.webView = WKWebView()
 
         super.init(nibName: nil, bundle: nil)
+
+        webView.uiDelegate = self
 
         pageLifecycleHandler.onSuccess = { [weak self] payload in
             self?.webPageDidReceiveEvent(event: payload.event)
@@ -38,7 +41,7 @@ open class WebViewController: UIViewController {
         view = webView
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
 
         super.viewDidLoad()
 
@@ -56,7 +59,7 @@ open class WebViewController: UIViewController {
 
         userContentController.addUserScript(script)
 
-        webPageLoadFileURL()
+        webPageLoad()
     }
 
     private func webPageDidReceiveEvent(event: PageLifecycleEvent) {
@@ -67,16 +70,37 @@ open class WebViewController: UIViewController {
         }
     }
 
-    open func webPageLoadFileURL() {
+    open func webPageLoad() {
 
         let appBundleURL = Bundle.main.resourceURL!.absoluteURL
+
         let html = appBundleURL.appendingPathComponent("WebPages/\(pageName)/index.html")
+        assert(FileManager.default.fileExists(atPath: html.path), "Missing \"\(pageName)\" HTML file")
+
         let webPages = appBundleURL.appendingPathComponent("WebPages", isDirectory: true)
 
         webView.loadFileURL(html, allowingReadAccessTo: webPages)
     }
 
     open func webPageDidLoad() {
-        Logger.log(tag: "PageLifecycle", "didLoad")
+        Logger.log(tag: pageName, "didLoad")
+    }
+}
+
+extension WebViewController: WKUIDelegate {
+
+    public func webView(
+        _ webView: WKWebView,
+        runJavaScriptAlertPanelWithMessage message: String,
+        initiatedByFrame frame: WKFrameInfo,
+        completionHandler: @escaping () -> Void
+    ) {
+        let alertController = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+
+        alertController.addAction(
+            UIAlertAction(title: "OK", style: .cancel) { _ in completionHandler() }
+        )
+
+        present(alertController, animated: true)
     }
 }

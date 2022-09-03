@@ -1,0 +1,112 @@
+<html>
+    <head>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
+        <style>
+            input, textarea {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 8px;
+                font-size: 16px;
+            }
+            label {
+                display: block;
+                font-weight: bold;
+                font-size: 16px;
+            }
+            #send {
+                font-size: 16px;
+                float: right;
+            }
+            .clearfix:after {
+                content: "";
+                display: block;
+                clear: both;
+            }
+        </style>
+        <script>
+            function futureDateTime() {
+                let date = new Date()
+                date.setSeconds(0)
+                date.setMilliseconds(0)
+                date.setMinutes(date.getMinutes() + 1)
+                return date
+            }
+
+            function futureISODateTimeString() {
+                let tzoffset = (new Date()).getTimezoneOffset() * 60000
+                let date = new Date(futureDateTime().getTime() - tzoffset)
+                return date.toISOString().substring(0, 16)
+            }
+
+            function scheduleNotification() {
+
+                let input_datetime = document.getElementById("datetime")
+                let input_id = document.getElementById("id")
+                let input_title = document.getElementById("title")
+                let textarea_message = document.getElementById("message")
+
+                let payload = {
+                    datetime: input_datetime.value.trim(),
+                    id: input_id.value.trim(),
+                    title: input_title.value.trim(),
+                    message: textarea_message.value.trim()
+                }
+
+                if (
+                      !payload.datetime.length
+                   || !payload.id.length
+                   || !payload.title.length
+                   || !payload.message.length
+                ) {
+                    alert("All fields are required!")
+                    return;
+                }
+
+                if (new Date(payload.datetime) < futureDateTime()) {
+                    alert("Display time must be in the future")
+                    return;
+                }
+
+                payload.id = parseInt(payload.id)
+
+                if (isNaN(payload.id)) {
+                    alert("Notification ID must be an integer")
+                    return;
+                }
+
+                payload.datetime += ":00Z"
+
+                frvr.postMessage('LocalNotification', payload)
+
+                input_datetime.value = futureISODateTimeString()
+                input_id.value = ""
+                input_title.value = ""
+                textarea_message.value = ""
+            }
+
+            function listPendingNotifications(notifications) {
+
+                let json = JSON.stringify(notifications, null, 2)
+                document.getElementById("notifications").innerHTML = json
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Local Notifications</h1>
+        <label for='datetime'>Display Time</label>
+        <input id='datetime' name='datetime' type='datetime-local' />
+        <label for='id'>Notification Id</label>
+        <input id='id' name='id' pattern="[0-9]*" />
+        <label for='title'>Title</label>
+        <input id='title' name='title' />
+        <label for='message'>Message</label>
+        <textarea id='message' name='message'></textarea>
+        <div class='clearfix'>
+            <button id='send' onclick='scheduleNotification()'>Schedule Notification</button>
+        </div>
+        <pre id='notifications'></pre>
+    </body>
+    <script>
+        document.getElementById("datetime").value = futureISODateTimeString()
+    </script>
+</html>

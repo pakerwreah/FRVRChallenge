@@ -1,21 +1,24 @@
 import WebKit
 
-public enum ScriptMessageHandlerError: Error {
-    case invalidJSON(String)
-    case decodeError(String)
+public struct ScriptMessageHandlerError: LocalizedError {
+    let reason: String
+    let details: String
+
+    public var errorDescription: String? { String(describing: self) }
 }
 
-public class ScriptMessageHandler<ScriptMessageModel: Decodable>: NSObject, WKScriptMessageHandler {
+public class ScriptMessageHandler<Payload: Decodable>: NSObject, WKScriptMessageHandler {
 
     public let name: String
 
-    public lazy var onSuccess: (ScriptMessageModel) -> Void = { [weak self] _ in
+    public lazy var onSuccess: (Payload) -> Void = { [weak self] _ in
         guard let self = self else { return }
         assertionFailure("No success handler configured for \(self.name)")
     }
 
     public lazy var onError: (ScriptMessageHandlerError) -> Void = { [weak self] error in
-        assertionFailure(error.localizedDescription)
+        guard let self = self else { return }
+        Logger.error(tag: self.name, error.localizedDescription)
     }
 
     public init(name: String) {
@@ -29,16 +32,19 @@ public class ScriptMessageHandler<ScriptMessageModel: Decodable>: NSObject, WKSc
 
         guard message.name == name else { return }
 
+        guard JSONSerialization.isValidJSONObject(message.body) else {
+            onError(.init(reason: "Invalid JSON", details: "\(message.body)"))
+            return
+        }
+
         do {
-            guard JSONSerialization.isValidJSONObject(message.body) else {
-                onError(.invalidJSON("\(message.body)"))
-                return
-            }
             let data = try JSONSerialization.data(withJSONObject: message.body, options: [])
-            let model = try JSONDecoder().decode(ScriptMessageModel.self, from: data)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .iso8601
+            let model = try decoder.decode(Payload.self, from: data)
             onSuccess(model)
         } catch {
-            onError(.decodeError(error.localizedDescription))
+            onError(.init(reason: error.localizedDescription, details: "\(message.body)"))
         }
     }
 }

@@ -14,6 +14,7 @@
 		34E7627C28C2674800BA3380 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7627B28C2674800BA3380 /* TabBarController.swift */; };
 		34E7627E28C26A4900BA3380 /* NativeLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7627D28C26A4900BA3380 /* NativeLogViewController.swift */; };
 		34E7628628C281A800BA3380 /* FRVRSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 34E7628528C281A800BA3380 /* FRVRSDK */; };
+		34E7628828C3846F00BA3380 /* LocalNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7628728C3846F00BA3380 /* LocalNotificationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		34E7627B28C2674800BA3380 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		34E7627D28C26A4900BA3380 /* NativeLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeLogViewController.swift; sourceTree = "<group>"; };
 		34E7628328C2806400BA3380 /* FRVRSDK */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = FRVRSDK; sourceTree = "<group>"; };
+		34E7628728C3846F00BA3380 /* LocalNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		34E7626C28C22E4A00BA3380 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				34E7628728C3846F00BA3380 /* LocalNotificationViewController.swift */,
 				34E7627D28C26A4900BA3380 /* NativeLogViewController.swift */,
 				34E7627B28C2674800BA3380 /* TabBarController.swift */,
 			);
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34E7627C28C2674800BA3380 /* TabBarController.swift in Sources */,
+				34E7628828C3846F00BA3380 /* LocalNotificationViewController.swift in Sources */,
 				34E7623D28C22C8B00BA3380 /* AppDelegate.swift in Sources */,
 				34E7627E28C26A4900BA3380 /* NativeLogViewController.swift in Sources */,
 			);
