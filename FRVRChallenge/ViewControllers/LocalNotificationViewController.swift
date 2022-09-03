@@ -13,11 +13,13 @@ final class LocalNotificationViewController: WebViewController {
 
     private let scheduleNotificationHandler: ScriptMessageHandler<LocalNotification>
     private let listNotificationsHandler: ScriptMessageHandler<Empty>
+    private let deleteNotificationsHandler: ScriptMessageHandler<[Int]>
 
     init() {
 
         scheduleNotificationHandler = ScriptMessageHandler(name: "ScheduleNotification")
         listNotificationsHandler = ScriptMessageHandler(name: "ListNotifications")
+        deleteNotificationsHandler = ScriptMessageHandler(name: "DeleteNotifications")
 
         super.init(pageName: "LocalNotification")
 
@@ -31,8 +33,13 @@ final class LocalNotificationViewController: WebViewController {
             self?.listPendingNotifications()
         }
 
+        deleteNotificationsHandler.onSuccess = { [weak self] ids in
+            self?.deleteNotifications(ids)
+        }
+
         webView.configuration.userContentController.add(scheduleNotificationHandler)
         webView.configuration.userContentController.add(listNotificationsHandler)
+        webView.configuration.userContentController.add(deleteNotificationsHandler)
     }
 
     override func viewDidLoad() {
@@ -111,6 +118,13 @@ final class LocalNotificationViewController: WebViewController {
                 Logger.error(tag: pageName, "Unable to encode notifications: \(notifications)")
             }
         }
+    }
+
+    private func deleteNotifications(_ ids: [Int]) {
+
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ids.map(String.init))
+
+        listPendingNotifications()
     }
 
     private func requestAuthorization() {

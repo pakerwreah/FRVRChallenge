@@ -25,7 +25,7 @@
             table {
                 width: 100%;
                 border-collapse: collapse;
-                margin: 8px 0;
+                margin: 20px 0 8px 0;
             }
             th, .center {
                 text-align: center;
@@ -112,6 +112,7 @@
 
                 let rows = notifications.map(item => `
                     <tr>
+                        <td><input onchange='checkDeleteButton()' type='checkbox' value='${item.id}' /></td>
                         <td class='center'>${item.id}</td>
                         <td class='center nowrap'>${formatDateTime(item.datetime)}</td>
                         <td class='nowrap'>${item.title}</td>
@@ -120,6 +121,22 @@
                 `).join('')
 
                 document.getElementById("notifications").innerHTML = rows
+
+                checkDeleteButton()
+            }
+
+            function checkDeleteButton() {
+
+                let checked = document.querySelectorAll('input[type=checkbox]:checked').length
+                document.getElementById('delete').style.visibility = checked ? 'visible' : 'hidden'
+            }
+
+            function deleteNotifications() {
+
+                let items = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
+                let ids = items.map(it => parseInt(it.value))
+
+                frvr.postMessage('DeleteNotifications', ids)
             }
 
             function refreshNotifications() {
@@ -144,6 +161,7 @@
         <table border=1>
             <thead>
                 <tr>
+                    <th></th>
                     <th>ID</th>
                     <th>Time</th>
                     <th>Title</th>
@@ -154,6 +172,7 @@
         </table>
         <div class='clearfix'>
             <button onclick='refreshNotifications()'>Refresh Notifications</button>
+            <button id='delete' onclick='deleteNotifications()'>Delete Selected</button>
         </div>
     </body>
     <script>
