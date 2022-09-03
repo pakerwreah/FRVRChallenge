@@ -1,0 +1,11 @@
+#log-text {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+#send {
+    font-size: 16px;
+    float: right;
+}

@@ -1,31 +1,8 @@
 <html>
     <head>
         <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no'>
-        <style>
-            #log-text {
-                width: 100%;
-                padding: 8px;
-                margin-bottom: 8px;
-                font-size: 16px;
-            }
-            #send {
-                font-size: 16px;
-                float: right;
-            }
-        </style>
-        <script>
-            function sendText() {
-
-                let textarea = document.getElementById("log-text")
-                let text = textarea.value
-
-                if(!text.trim().length) return;
-
-                frvr.postMessage('NativeLog', text)
-
-                textarea.value = ""
-            }
-        </script>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js"></script>
     </head>
     <body>
         <h1>Native Logs</h1>
