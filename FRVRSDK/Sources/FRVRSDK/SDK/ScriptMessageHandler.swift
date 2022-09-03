@@ -7,6 +7,8 @@ public struct ScriptMessageHandlerError: LocalizedError {
     public var errorDescription: String? { String(describing: self) }
 }
 
+public struct Empty: Decodable {}
+
 public class ScriptMessageHandler<Payload: Decodable>: NSObject, WKScriptMessageHandler {
 
     public let name: String
@@ -18,7 +20,7 @@ public class ScriptMessageHandler<Payload: Decodable>: NSObject, WKScriptMessage
 
     public lazy var onError: (ScriptMessageHandlerError) -> Void = { [weak self] error in
         guard let self = self else { return }
-        Logger.error(tag: self.name, error.localizedDescription)
+        Logger.error(tag: self.name, String(describing: error))
     }
 
     public init(name: String) {
@@ -32,6 +34,11 @@ public class ScriptMessageHandler<Payload: Decodable>: NSObject, WKScriptMessage
 
         guard message.name == name else { return }
 
+        if let payload = message.body as? Payload {
+            onSuccess(payload)
+            return
+        }
+
         guard JSONSerialization.isValidJSONObject(message.body) else {
             onError(.init(reason: "Invalid JSON", details: "\(message.body)"))
             return
@@ -41,10 +48,10 @@ public class ScriptMessageHandler<Payload: Decodable>: NSObject, WKScriptMessage
             let data = try JSONSerialization.data(withJSONObject: message.body, options: [])
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
-            let model = try decoder.decode(Payload.self, from: data)
-            onSuccess(model)
+            let payload = try decoder.decode(Payload.self, from: data)
+            onSuccess(payload)
         } catch {
-            onError(.init(reason: error.localizedDescription, details: "\(message.body)"))
+            onError(.init(reason: String(describing: error), details: "\(message.body)"))
         }
     }
 }

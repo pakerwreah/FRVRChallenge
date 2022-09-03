@@ -21,7 +21,7 @@
 
                 if(!text.trim().length) return;
 
-                frvr.postMessage('NativeLog', { text })
+                frvr.postMessage('NativeLog', text)
 
                 textarea.value = ""
             }

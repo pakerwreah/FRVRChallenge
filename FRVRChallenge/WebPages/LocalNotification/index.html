@@ -13,7 +13,7 @@
                 font-weight: bold;
                 font-size: 16px;
             }
-            #send {
+            button {
                 font-size: 16px;
                 float: right;
             }
@@ -21,6 +21,20 @@
                 content: "";
                 display: block;
                 clear: both;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 8px 0;
+            }
+            th, .center {
+                text-align: center;
+            }
+            th, td {
+                padding: 3px 6px;
+            }
+            .nowrap {
+                white-space: nowrap;
             }
         </style>
         <script>
@@ -76,7 +90,7 @@
 
                 payload.datetime += ":00Z"
 
-                frvr.postMessage('LocalNotification', payload)
+                frvr.postMessage('ScheduleNotification', payload)
 
                 input_datetime.value = futureISODateTimeString()
                 input_id.value = ""
@@ -84,10 +98,33 @@
                 textarea_message.value = ""
             }
 
+            function formatDateTime(datetime) {
+                let options = {
+                    dateStyle: 'short',
+                    timeStyle: 'short',
+                    hour12: false,
+                    timeZone: 'UTC'
+                }
+                return new Date(datetime).toLocaleString(window.navigator.language, options)
+            }
+
             function listPendingNotifications(notifications) {
 
-                let json = JSON.stringify(notifications, null, 2)
-                document.getElementById("notifications").innerHTML = json
+                let rows = notifications.map(item => `
+                    <tr>
+                        <td class='center'>${item.id}</td>
+                        <td class='center nowrap'>${formatDateTime(item.datetime)}</td>
+                        <td class='nowrap'>${item.title}</td>
+                        <td>${item.message}</td>
+                    </tr>
+                `).join('')
+
+                document.getElementById("notifications").innerHTML = rows
+            }
+
+            function refreshNotifications() {
+
+                frvr.postMessage('ListNotifications')
             }
         </script>
     </head>
@@ -102,9 +139,22 @@
         <label for='message'>Message</label>
         <textarea id='message' name='message'></textarea>
         <div class='clearfix'>
-            <button id='send' onclick='scheduleNotification()'>Schedule Notification</button>
+            <button onclick='scheduleNotification()'>Schedule Notification</button>
         </div>
-        <pre id='notifications'></pre>
+        <table border=1>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Time</th>
+                    <th>Title</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody id='notifications'></tbody>
+        </table>
+        <div class='clearfix'>
+            <button onclick='refreshNotifications()'>Refresh Notifications</button>
+        </div>
     </body>
     <script>
         document.getElementById("datetime").value = futureISODateTimeString()

@@ -3,31 +3,36 @@ import FRVRSDK
 import UserNotifications
 
 private struct LocalNotification: Codable {
-    let datetime: Date
     let id: Int
+    let datetime: Date
     let title: String
     let message: String
 }
 
 final class LocalNotificationViewController: WebViewController {
 
-    private let localNotificationHandler: ScriptMessageHandler<LocalNotification>
+    private let scheduleNotificationHandler: ScriptMessageHandler<LocalNotification>
+    private let listNotificationsHandler: ScriptMessageHandler<Empty>
 
     init() {
 
-        let pageName = "LocalNotification"
+        scheduleNotificationHandler = ScriptMessageHandler(name: "ScheduleNotification")
+        listNotificationsHandler = ScriptMessageHandler(name: "ListNotifications")
 
-        localNotificationHandler = ScriptMessageHandler(name: pageName)
-
-        super.init(pageName: pageName)
+        super.init(pageName: "LocalNotification")
 
         tabBarItem = UITabBarItem(title: "Local Notifications", image: UIImage(systemName: "alarm"), tag: 0)
 
-        localNotificationHandler.onSuccess = { [weak self] payload in
+        scheduleNotificationHandler.onSuccess = { [weak self] payload in
             self?.scheduleNotification(payload)
         }
 
-        webView.configuration.userContentController.add(localNotificationHandler)
+        listNotificationsHandler.onSuccess = { [weak self] _ in
+            self?.listPendingNotifications()
+        }
+
+        webView.configuration.userContentController.add(scheduleNotificationHandler)
+        webView.configuration.userContentController.add(listNotificationsHandler)
     }
 
     override func viewDidLoad() {
@@ -86,13 +91,9 @@ final class LocalNotificationViewController: WebViewController {
                     return nil
                 }
 
-                Logger.log(tag: pageName, "identifier: \(req.identifier), date: \(req.trigger!)")
-
-                print(datetime)
-
                 return LocalNotification(
-                    datetime: datetime,
                     id: id,
+                    datetime: datetime,
                     title: req.content.title,
                     message: req.content.body
                 )
@@ -114,11 +115,11 @@ final class LocalNotificationViewController: WebViewController {
 
     private func requestAuthorization() {
 
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { [pageName] success, error in
             if let error = error {
-                Logger.error(tag: self.pageName, error.localizedDescription)
+                Logger.error(tag: pageName, String(describing: error))
             } else if !success {
-                Logger.log(tag: self.pageName, "⚠️ Notifications not allowed!")
+                Logger.log(tag: pageName, "⚠️ Notifications not allowed!")
             }
         }
     }

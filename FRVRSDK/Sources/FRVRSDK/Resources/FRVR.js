@@ -6,7 +6,7 @@ class FRVR {
         })
     }
 
-    postMessage(handlerID, message) {
+    postMessage(handlerID, message = {}) {
         let handler = window.webkit.messageHandlers[handlerID]
         if(handler) {
             handler.postMessage(message)

@@ -1,13 +1,9 @@
 import UIKit
 import FRVRSDK
 
-private struct NativeLog: Decodable {
-    let text: String
-}
-
 final class NativeLogViewController: WebViewController {
 
-    private let nativeLogHandler: ScriptMessageHandler<NativeLog>
+    private let nativeLogHandler: ScriptMessageHandler<String>
 
     init() {
 
@@ -19,8 +15,8 @@ final class NativeLogViewController: WebViewController {
 
         tabBarItem = UITabBarItem(title: "Native Logs", image: UIImage(systemName: "doc.plaintext"), tag: 0)
 
-        nativeLogHandler.onSuccess = { payload in
-            Logger.log(tag: pageName, payload.text)
+        nativeLogHandler.onSuccess = { text in
+            Logger.log(tag: pageName, text)
         }
 
         webView.configuration.userContentController.add(nativeLogHandler)
