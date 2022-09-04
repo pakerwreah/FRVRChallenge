@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		34B9970928C4E88500774523 /* AppLifecycleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B9970828C4E88500774523 /* AppLifecycleViewController.swift */; };
 		34E7623D28C22C8B00BA3380 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E7623C28C22C8B00BA3380 /* AppDelegate.swift */; };
 		34E7624628C22C8E00BA3380 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 34E7624528C22C8E00BA3380 /* Assets.xcassets */; };
 		34E7624928C22C8E00BA3380 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34E7624728C22C8E00BA3380 /* LaunchScreen.storyboard */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34B9970828C4E88500774523 /* AppLifecycleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLifecycleViewController.swift; sourceTree = "<group>"; };
 		34E7623928C22C8B00BA3380 /* FRVRChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FRVRChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E7623C28C22C8B00BA3380 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34E7624528C22C8E00BA3380 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 		34E7626C28C22E4A00BA3380 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				34B9970828C4E88500774523 /* AppLifecycleViewController.swift */,
 				34E7628728C3846F00BA3380 /* LocalNotificationViewController.swift */,
 				34E7627D28C26A4900BA3380 /* NativeLogViewController.swift */,
 				34E7627B28C2674800BA3380 /* TabBarController.swift */,
@@ -180,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				34B9970928C4E88500774523 /* AppLifecycleViewController.swift in Sources */,
 				34E7627C28C2674800BA3380 /* TabBarController.swift in Sources */,
 				34E7628828C3846F00BA3380 /* LocalNotificationViewController.swift in Sources */,
 				34E7623D28C22C8B00BA3380 /* AppDelegate.swift in Sources */,

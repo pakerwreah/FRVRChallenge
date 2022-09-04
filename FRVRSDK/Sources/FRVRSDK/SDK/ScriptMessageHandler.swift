@@ -45,7 +45,7 @@ public class ScriptMessageHandler<Payload: Decodable>: NSObject, WKScriptMessage
         }
 
         do {
-            let data = try JSONSerialization.data(withJSONObject: message.body, options: [])
+            let data = try JSONSerialization.data(withJSONObject: message.body)
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .iso8601
             let payload = try decoder.decode(Payload.self, from: data)

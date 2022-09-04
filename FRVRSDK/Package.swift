@@ -24,11 +24,7 @@ let package = Package(
         .target(
             name: "FRVRSDK",
             dependencies: [],
-            resources: [.copy("Resources/FRVR.js")]
-        ),
-        .testTarget(
-            name: "FRVRSDKTests",
-            dependencies: ["FRVRSDK"]
-        ),
+            resources: [.copy("API/FRVR.js")]
+        )
     ]
 )

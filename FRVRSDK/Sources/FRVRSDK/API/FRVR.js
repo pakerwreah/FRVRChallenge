@@ -54,6 +54,12 @@ class FRVR {
     deleteNotifications(ids) {
         this.postMessage('DeleteNotifications', ids)
     }
+
+    // MARK: - Application Lifecycle
+
+    registerAppEventsHandler(handler) {
+        this.registerMessageHandler('ListAppEvents', handler)
+    }
 }
 
 const frvr = new FRVR()
