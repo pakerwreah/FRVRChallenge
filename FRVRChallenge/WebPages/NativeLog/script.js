@@ -1,11 +1,16 @@
 function sendText() {
 
-    let textarea = document.getElementById("log-text")
+    let textarea = document.getElementById("text")
     let text = textarea.value
 
     if(!text.trim().length) return;
 
-    frvr.postMessage('NativeLog', text)
+    frvr.nativeLog(text)
 
     textarea.value = ""
 }
+
+window.addEventListener('load', () => {
+
+    document.getElementById("send").onclick = sendText
+})

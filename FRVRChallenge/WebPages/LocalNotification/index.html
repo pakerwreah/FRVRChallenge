@@ -15,7 +15,7 @@
         <label for='message'>Message</label>
         <textarea id='message' name='message'></textarea>
         <div class='clearfix'>
-            <button onclick='scheduleNotification()'>Schedule Notification</button>
+            <button id='schedule'>Schedule Notification</button>
         </div>
         <table border=1>
             <thead>
@@ -30,11 +30,8 @@
             <tbody id='notifications'></tbody>
         </table>
         <div class='clearfix'>
-            <button onclick='refreshNotifications()'>Refresh Notifications</button>
-            <button id='delete' onclick='deleteNotifications()'>Delete Selected</button>
+            <button id='refresh'>Refresh Notifications</button>
+            <button id='delete'>Delete Selected</button>
         </div>
     </body>
-    <script>
-        document.getElementById("datetime").value = futureISODateTimeString()
-    </script>
 </html>

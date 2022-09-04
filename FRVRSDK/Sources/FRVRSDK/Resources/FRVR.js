@@ -1,18 +1,58 @@
 class FRVR {
 
     constructor() {
-        window.addEventListener('load', (event) => {
+
+        this.nativeMessageHandlers = {}
+
+        window.addEventListener('load', () => {
             this.postMessage('PageLifecycle', { event: 'didLoad' })
         })
     }
 
-    postMessage(handlerID, message = {}) {
-        let handler = window.webkit.messageHandlers[handlerID]
+    postMessage(handlerName, message = {}) {
+
+        let handler = window.webkit.messageHandlers[handlerName]
+
         if(handler) {
             handler.postMessage(message)
         } else {
-            console.error(`Message handler "${handlerID}" not found`)
+            console.error(`Message handler "${handlerName}" not found`)
         }
+    }
+
+    didReceiveMessage(handlerName, message) {
+
+        let handler = this.nativeMessageHandlers[handlerName]
+
+        if(handler) {
+            handler(message)
+        } else {
+            console.error(`Native message handler "${handlerName}" not found`)
+        }
+    }
+
+    registerMessageHandler(handlerName, handler) {
+        this.nativeMessageHandlers[handlerName] = handler
+    }
+
+    // MARK: - Native Logs
+
+    nativeLog(text) {
+        this.postMessage('NativeLog', text)
+    }
+
+    // MARK: - Local Notifications
+
+    listPendingNotifications() {
+        this.postMessage('ListNotifications')
+    }
+
+    registerPendingNotificationsHandler(handler) {
+        this.registerMessageHandler('ListNotifications', handler)
+    }
+
+    deleteNotifications(ids) {
+        this.postMessage('DeleteNotifications', ids)
     }
 }
 

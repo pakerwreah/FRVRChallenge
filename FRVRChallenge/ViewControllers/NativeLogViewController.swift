@@ -13,7 +13,11 @@ final class NativeLogViewController: WebViewController {
 
         super.init(pageName: pageName)
 
-        tabBarItem = UITabBarItem(title: "Native Logs", image: UIImage(systemName: "doc.plaintext"), tag: 0)
+        tabBarItem = UITabBarItem(
+            title: "Native Logs",
+            image: UIImage(systemName: "doc.plaintext"),
+            tag: 0
+        )
 
         nativeLogHandler.onSuccess = { text in
             Logger.log(tag: pageName, text)

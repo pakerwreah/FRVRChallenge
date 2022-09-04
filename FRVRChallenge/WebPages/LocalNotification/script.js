@@ -96,10 +96,20 @@ function deleteNotifications() {
     let items = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
     let ids = items.map(it => parseInt(it.value))
 
-    frvr.postMessage('DeleteNotifications', ids)
+    frvr.deleteNotifications(ids)
 }
 
 function refreshNotifications() {
 
-    frvr.postMessage('ListNotifications')
+    frvr.listPendingNotifications()
 }
+
+window.addEventListener('load', () => {
+
+    document.getElementById("datetime").value = futureISODateTimeString()
+    document.getElementById("schedule").onclick = scheduleNotification
+    document.getElementById("refresh").onclick = refreshNotifications
+    document.getElementById("delete").onclick = deleteNotifications
+
+    frvr.registerPendingNotificationsHandler(listPendingNotifications)
+})

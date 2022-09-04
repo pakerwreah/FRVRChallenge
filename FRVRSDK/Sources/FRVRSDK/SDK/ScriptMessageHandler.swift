@@ -55,10 +55,3 @@ public class ScriptMessageHandler<Payload: Decodable>: NSObject, WKScriptMessage
         }
     }
 }
-
-public extension WKUserContentController {
-
-    func add<T>(_ scriptMessageHandler: ScriptMessageHandler<T>) {
-        add(scriptMessageHandler, name: scriptMessageHandler.name)
-    }
-}

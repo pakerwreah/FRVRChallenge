@@ -23,7 +23,11 @@ final class LocalNotificationViewController: WebViewController {
 
         super.init(pageName: "LocalNotification")
 
-        tabBarItem = UITabBarItem(title: "Local Notifications", image: UIImage(systemName: "alarm"), tag: 0)
+        tabBarItem = UITabBarItem(
+            title: "Local Notifications",
+            image: UIImage(systemName: "envelope"),
+            tag: 0
+        )
 
         scheduleNotificationHandler.onSuccess = { [weak self] payload in
             self?.scheduleNotification(payload)
@@ -83,7 +87,8 @@ final class LocalNotificationViewController: WebViewController {
 
     private func listPendingNotifications() {
 
-        UNUserNotificationCenter.current().getPendingNotificationRequests { [pageName, webView] requests in
+        UNUserNotificationCenter.current().getPendingNotificationRequests {
+            [pageName, webView, handlerName = listNotificationsHandler.name] requests in
 
             let notifications: [LocalNotification] = requests.compactMap { req in
                 guard
@@ -106,17 +111,7 @@ final class LocalNotificationViewController: WebViewController {
                 )
             }
 
-            do {
-                let encoder = JSONEncoder()
-                encoder.dateEncodingStrategy = .iso8601
-                let data = try encoder.encode(notifications)
-                guard let json = String(data: data, encoding: .utf8) else { return }
-                DispatchQueue.main.async {
-                    webView.evaluateJavaScript("listPendingNotifications(\(json))")
-                }
-            } catch {
-                Logger.error(tag: pageName, "Unable to encode notifications: \(notifications)")
-            }
+            webView.postMessage(handlerName, notifications)
         }
     }
 
